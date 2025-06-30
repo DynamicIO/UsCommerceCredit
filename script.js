@@ -94,24 +94,48 @@ function highlightActiveNav() {
     });
 }
 
-// Navbar Background on Scroll
+// Navbar Collapse/Expand on Scroll
+let lastScrollY = window.scrollY;
+let isNavbarVisible = true;
+
 function handleNavbarScroll() {
     const navbar = document.querySelector('nav');
-    if (window.scrollY > 50) {
-        navbar.classList.add('shadow-lg');
-        navbar.classList.remove('bg-white/95', 'dark:bg-navy/95');
-        navbar.classList.add('bg-white', 'dark:bg-navy');
-    } else {
+    const currentScrollY = window.scrollY;
+    
+    // Don't hide navbar at the very top
+    if (currentScrollY <= 100) {
+        navbar.classList.remove('-translate-y-full');
         navbar.classList.remove('shadow-lg');
         navbar.classList.remove('bg-white', 'dark:bg-navy');
         navbar.classList.add('bg-white/95', 'dark:bg-navy/95');
+        isNavbarVisible = true;
+        return;
     }
+    
+    // Hide navbar when scrolling down, show when scrolling up
+    if (currentScrollY > lastScrollY && isNavbarVisible) {
+        // Scrolling down - hide navbar
+        navbar.classList.add('-translate-y-full');
+        isNavbarVisible = false;
+    } else if (currentScrollY < lastScrollY && !isNavbarVisible) {
+        // Scrolling up - show navbar
+        navbar.classList.remove('-translate-y-full');
+        navbar.classList.add('shadow-lg');
+        navbar.classList.remove('bg-white/95', 'dark:bg-navy/95');
+        navbar.classList.add('bg-white', 'dark:bg-navy');
+        isNavbarVisible = true;
+    }
+    
+    lastScrollY = currentScrollY;
 }
+
+// Throttled scroll event listener for better performance
+const throttledNavbarScroll = throttle(handleNavbarScroll, 10);
 
 // Scroll Event Listeners
 window.addEventListener('scroll', () => {
     highlightActiveNav();
-    handleNavbarScroll();
+    throttledNavbarScroll();
 });
 
 // Service Tile Click Handlers
