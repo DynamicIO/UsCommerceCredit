@@ -1,0 +1,645 @@
+/* Custom CSS for US Commerce Credit Website */
+
+/* Smooth scrolling for better user experience */
+html {
+    scroll-behavior: smooth;
+}
+
+/* iOS and mobile optimizations */
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-touch-callout: none;
+}
+
+body {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+/* Custom color variables for consistency */
+:root {
+    --primary-blue: #2563eb;
+    --navy: #1e293b;
+    --silver: #94a3b8;
+    --charcoal: #374151;
+    --gradient-primary: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%);
+    --gradient-secondary: linear-gradient(135deg, var(--primary-blue) 0%, #3b82f6 100%);
+}
+
+/* Dark mode variables */
+.dark {
+    --bg-primary: var(--navy);
+    --bg-secondary: var(--charcoal);
+    --text-primary: #ffffff;
+    --text-secondary: var(--silver);
+}
+
+/* Light mode variables */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+}
+
+/* Loading animation */
+.loaded {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Ripple effect for buttons */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Enhanced button styles */
+.btn-primary {
+    background: var(--gradient-secondary);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid currentColor;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-secondary:hover {
+    background: currentColor;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Navigation enhancements */
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-blue);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Card hover effects */
+.service-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-blue);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dark .service-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Service tile enhancements */
+.service-tile {
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-tile:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(37, 99, 235, 0.15);
+}
+
+.service-tile:active {
+    transform: translateY(-6px) scale(1.01);
+}
+
+.service-tile:focus {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+/* Add subtle animation to the call-to-action text */
+.service-tile:hover span {
+    transform: translateX(4px);
+    transition: transform 0.2s ease;
+}
+
+/* Add a subtle gradient overlay on hover */
+.service-tile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(59, 130, 246, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.service-tile:hover::before {
+    opacity: 1;
+}
+
+/* Ensure content is above the overlay */
+.service-tile > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Partner card styling */
+.partner-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+}
+
+.partner-card .group:hover {
+    transform: scale(1.05);
+}
+
+/* Partner logo/avatar styling */
+.partner-card .w-16.h-16 {
+    transition: all 0.3s ease;
+}
+
+.partner-card:hover .w-16.h-16 {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Partner description text animation */
+.partner-card p {
+    transition: color 0.3s ease;
+}
+
+.partner-card:hover p {
+    color: var(--text-primary);
+}
+
+/* Gradient overlays for partner cards */
+.partner-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.02), rgba(59, 130, 246, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 0.5rem;
+    pointer-events: none;
+}
+
+.partner-card:hover::before {
+    opacity: 1;
+}
+
+/* Ensure partner card content is above overlay */
+.partner-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Social Media Icons */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+
+.social-icon:hover::before {
+    opacity: 1;
+}
+
+.social-icon:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.social-icon:active {
+    transform: scale(1.05) rotate(2deg);
+}
+
+/* LinkedIn specific styling */
+.social-icon:hover .fa-linkedin-in {
+    animation: bounce 0.6s ease-in-out;
+}
+
+/* X/Twitter specific styling */
+.social-icon:hover .fa-twitter {
+    animation: shake 0.6s ease-in-out;
+}
+
+/* Instagram specific styling */
+.social-icon:hover .fa-instagram {
+    animation: pulse 0.6s ease-in-out;
+}
+
+/* Social media icon animations */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-4px);
+    }
+    60% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Social media section styling */
+.social-media-section {
+    padding: 1rem 0;
+}
+
+/* Mobile social media optimization */
+@media (max-width: 768px) {
+    .social-icon {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .social-icon i {
+        font-size: 1rem;
+    }
+}
+
+/* Hero section enhancements */
+.hero-bg {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Parallax scroll effect */
+.parallax {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-blue);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1d4ed8;
+}
+
+/* Form enhancements */
+.form-input {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.form-input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    outline: none;
+}
+
+.form-input:focus + label {
+    color: var(--primary-blue);
+}
+
+/* Stats counter animation */
+.counter {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Gradient text effect */
+.gradient-text {
+    background: var(--gradient-secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Section dividers */
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
+}
+
+/* Mobile menu animation */
+.mobile-menu {
+    transition: all 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.mobile-menu.open {
+    max-height: 400px;
+}
+
+/* Mobile navigation improvements */
+#mobile-menu {
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: hidden;
+}
+
+#mobile-menu:not(.hidden) {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ensure mobile menu is properly positioned */
+@media (max-width: 767px) {
+    nav {
+        position: relative;
+        overflow: visible;
+    }
+    
+    #mobile-menu {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        right: 0;
+        top: 100%;
+        z-index: 1000;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Improve mobile menu item touch targets */
+    #mobile-menu a {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        font-size: 1.1rem;
+    }
+}
+
+/* Image overlay effects */
+.image-overlay {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(37, 99, 235, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.image-overlay:hover::before {
+    opacity: 1;
+}
+
+/* Typography enhancements */
+.heading-primary {
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+}
+
+.heading-secondary {
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+}
+
+/* Theme transition */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Loading spinner */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Notification styles */
+.notification {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+/* Focus styles for accessibility */
+.focus-visible {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+/* Animate on scroll enhancements */
+[data-aos] {
+    transition-property: transform, opacity;
+}
+
+/* Glass morphism effect */
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+    .hero-bg {
+        background-attachment: scroll;
+    }
+    
+    .parallax {
+        transform: none;
+    }
+    
+    /* Mobile touch optimizations */
+    button, .btn, a[href^="#"] {
+        min-height: 48px;
+        min-width: 48px;
+    }
+    
+    /* Better mobile spacing */
+    .mobile-spacing {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Mobile navigation improvements */
+    .nav-link {
+        padding: 0.75rem 0;
+        font-size: 1.125rem;
+    }
+    
+    /* Mobile form improvements */
+    input, textarea, select {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .service-card {
+        border: 2px solid currentColor;
+    }
+    
+    .btn-primary {
+        border: 2px solid var(--primary-blue);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .parallax {
+        transform: none !important;
+    }
+}
+
+/* Custom utilities */
+.text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.box-shadow-xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.dark .box-shadow-xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Animation delays for staggered effects */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; } 
